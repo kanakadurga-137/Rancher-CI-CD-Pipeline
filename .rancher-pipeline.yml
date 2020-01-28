@@ -8,7 +8,7 @@ stages:
 
         echo ${COMMIT_ID}
     env:
-      COMMIT_ID: ${LCOMMIT_ID}
+      COMMIT_ID: LCOMMIT_ID
 - name: Build and Push Images
   steps:
   - runScriptConfig:
