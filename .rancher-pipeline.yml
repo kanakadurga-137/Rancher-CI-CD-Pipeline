@@ -13,7 +13,7 @@ stages:
       buildContext: .
       tag: mbhaskar2005/firstdockerrepo:${COMMIT_ID}
       pushRemote: true
-      registry: index.docker.io
+      registry: https://hub.docker.com/repository/docker/mbhaskar2005/firstdockerrepo
 timeout: 60
 branch: {}
 notification: {}
