@@ -3,7 +3,10 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: LCOMMIT_ID=$(git rev-parse --verify HEAD)
+      shellScript: |-
+        LCOMMIT_ID=$(git rev-parse --verify HEAD)
+
+        echo ${COMMIT_ID}
     env:
       COMMIT_ID: ${LCOMMIT_ID}
 - name: Build and Push Images
@@ -11,6 +14,7 @@ stages:
   - runScriptConfig:
       image: gcc:latest
       shellScript: |-
+        echo ${COMMIT_ID}
         $(docker build . -t mbhaskar2005/firstdockerrepo:${COMMIT_ID})
 
         $(docker login -u mbhaskar2005 -p ${docker-pwd})
