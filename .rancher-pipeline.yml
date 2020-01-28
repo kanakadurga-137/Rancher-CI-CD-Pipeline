@@ -11,11 +11,11 @@ stages:
   - runScriptConfig:
       image: node:latest
       shellScript: |-
-        docker build -t mbhaskar2005/firstdockerrepo:${COMMIT_ID}
+        $(docker build -t mbhaskar2005/firstdockerrepo:${COMMIT_ID})
 
-        docker login -u mbhaskar2005 -p ${docker-pwd}
+        $(docker login -u mbhaskar2005 -p ${docker-pwd})
 
-        docker push mbhaskar2005/firstdockerrepo:${COMMIT_ID}
+        $(docker push mbhaskar2005/firstdockerrepo:${COMMIT_ID})
     envFrom:
     - sourceName: s-hzvht
       sourceKey: passwd
