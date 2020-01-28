@@ -6,15 +6,13 @@ stages:
       shellScript: commit_id = $(git rev-parse --verify HEAD)
     env:
       COMMIT_ID: ${commit_id}
-- name: Build Docker Image
+- name: Build and Push Images
   steps:
-  - runScriptConfig:
-      image: gcc:latest
-      shellScript: docker build -t mbhaskar2005/firstdockerrepo:${COMMIT_ID}
-- name: Push the Image
-  steps:
-  - runScriptConfig:
-      image: gcc:latest
-      shellScript: docker login -u -p
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: mbhaskar2005/firstdockerrepo:${COMMIT_ID}
+      pushRemote: true
+      registry: index.docker.io
 timeout: 60
 notification: {}
