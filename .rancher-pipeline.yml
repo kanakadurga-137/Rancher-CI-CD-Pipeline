@@ -1,2 +1,20 @@
+stages:
+- name: Get Latest Commit ID
+  steps:
+  - runScriptConfig:
+      image: gcc:latest
+      shellScript: commit_id = $(git rev-parse --verify HEAD)
+    env:
+      COMMIT_ID: ${commit_id}
+- name: Build Docker Image
+  steps:
+  - runScriptConfig:
+      image: gcc:latest
+      shellScript: docker build -t mbhaskar2005/firstdockerrepo:${COMMIT_ID}
+- name: Push the Image
+  steps:
+  - runScriptConfig:
+      image: gcc:latest
+      shellScript: docker login -u -p
 timeout: 60
 notification: {}
