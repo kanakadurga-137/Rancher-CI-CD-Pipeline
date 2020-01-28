@@ -3,9 +3,9 @@ stages:
   steps:
   - runScriptConfig:
       image: gcc:latest
-      shellScript: commit_id = $(git rev-parse --verify HEAD)
+      shellScript: commit = $(git rev-parse --verify HEAD)
     env:
-      COMMIT_ID: ${commit_id}
+      COMMIT_ID: ${commit}
 - name: Build and Push Images
   steps:
   - publishImageConfig:
