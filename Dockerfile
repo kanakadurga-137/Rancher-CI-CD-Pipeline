@@ -1,1 +1,1 @@
-FROM mbhaskar2005/firstdockerrepo:test
+FROM registry:2
