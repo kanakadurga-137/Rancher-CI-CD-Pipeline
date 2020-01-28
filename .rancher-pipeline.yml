@@ -2,10 +2,10 @@ stages:
 - name: Get Latest Commit ID
   steps:
   - runScriptConfig:
-      image: gcc:latest
-      shellScript: commit = $(git rev-parse --verify HEAD)
+      image: node:latest
+      shellScript: LCOMMIT_ID=$(git rev-parse --verify HEAD)
     env:
-      COMMIT_ID: ${commit}
+      COMMIT_ID: ${LCOMMIT_ID}
 - name: Build and Push Images
   steps:
   - publishImageConfig:
