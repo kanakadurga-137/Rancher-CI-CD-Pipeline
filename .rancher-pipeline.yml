@@ -11,7 +11,7 @@ stages:
   - runScriptConfig:
       image: node:latest
       shellScript: |-
-        $(docker build -t mbhaskar2005/firstdockerrepo:${COMMIT_ID})
+        $(docker build . -t mbhaskar2005/firstdockerrepo:${COMMIT_ID})
 
         $(docker login -u mbhaskar2005 -p ${docker-pwd})
 
