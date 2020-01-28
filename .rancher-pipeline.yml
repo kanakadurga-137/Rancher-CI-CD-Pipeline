@@ -8,12 +8,18 @@ stages:
       COMMIT_ID: ${LCOMMIT_ID}
 - name: Build and Push Images
   steps:
-  - publishImageConfig:
-      dockerfilePath: ./Dockerfile
-      buildContext: .
-      tag: mbhaskar2005/firstdockerrepo:${COMMIT_ID}
-      pushRemote: true
-      registry: https://hub.docker.com/repository/docker/mbhaskar2005/firstdockerrepo
+  - runScriptConfig:
+      image: node:latest
+      shellScript: |-
+        sudo docker build -t mbhaskar2005/firstdockerrepo:${COMMIT_ID}
+
+        sudo docker login -u mbhaskar2005 -p ${docker-pwd}
+
+        sudo docker push mbhaskar2005/firstdockerrepo:${COMMIT_ID}
+    envFrom:
+    - sourceName: s-hzvht
+      sourceKey: passwd
+      targetKey: docker-pwd
 timeout: 60
 branch:
   include:
