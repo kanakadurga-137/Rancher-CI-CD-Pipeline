@@ -7,7 +7,6 @@ stages:
         export LCOMMIT_ID=$(git rev-parse --verify HEAD)
 
         echo ${LCOMMIT_ID}
-        echo ${COMMIT_ID}
     env:
       COMMIT_ID: ${LCOMMIT_ID}
 - name: Build and Push Images
@@ -15,6 +14,7 @@ stages:
   - runScriptConfig:
       image: gcc:latest
       shellScript: |-
+        echo ${LCOMMIT_ID}
         echo ${COMMIT_ID}
         $(docker build . -t mbhaskar2005/firstdockerrepo:${COMMIT_ID})
 
