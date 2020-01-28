@@ -9,7 +9,7 @@ stages:
 - name: Build and Push Images
   steps:
   - runScriptConfig:
-      image: node:latest
+      image: gcc:latest
       shellScript: |-
         $(docker build . -t mbhaskar2005/firstdockerrepo:${COMMIT_ID})
 
