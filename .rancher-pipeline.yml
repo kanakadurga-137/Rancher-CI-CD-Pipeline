@@ -3,10 +3,7 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: |-
-        export LCOMMIT_ID=$(git rev-parse --verify HEAD)
-
-        echo ${LCOMMIT_ID}
+      shellScript: "export LCOMMIT_ID=$(git rev-parse --verify HEAD)\n\necho ${LCOMMIT_ID}\nCOMMIT_ID=${LCOMMIT_ID} "
     env:
       COMMIT_ID: ${LCOMMIT_ID}
 - name: Build and Push Images
