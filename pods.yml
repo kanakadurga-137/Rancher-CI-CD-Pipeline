@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: firstpod
+  labels:
+    app: firstpod
+spec:
+  containers:
+    - name: firstpod
+      image: mbhaskar2005/firstdockerrepo:tagVersion
+      ports:
+        - containerPort: 8080
