@@ -12,12 +12,13 @@ pipeline {
         sh "docker build . -t mbhaskar2005/firstdockerrepo:${DOCKER_TAG}"
         }
      }
-  }
-  stage('DockerHub Push'){
-    steps{
-      sh "docker images"
+
+    stage('DockerHub Push'){
+      steps{
+        sh "docker images"
+      }
     }
-  }
+  }  
 }
 
 def getDockerTag(){
