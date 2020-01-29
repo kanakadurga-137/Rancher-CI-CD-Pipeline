@@ -13,6 +13,11 @@ pipeline {
         }
      }
   }
+  stage('DockerHub Push'){
+    steps{
+      sh "docker images"
+    }
+  }
 }
 
 def getDockerTag(){
