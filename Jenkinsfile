@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Build Docker Image'){
       steps{
+        sh "whoami"
         sh "docker build . -t mbhaskar2005/firstdockerrepo:${DOCKER_TAG}"
         }
      }
