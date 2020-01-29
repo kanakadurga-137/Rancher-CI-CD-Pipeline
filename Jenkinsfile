@@ -16,6 +16,10 @@ pipeline {
     stage('DockerHub Push'){
       steps{
         sh "docker images"
+        withCredentials([string(credentialsId: 'dockerPWD', variable: 'DockerPWD')]) {
+          sh "docker login -u mbhaskar2005 -p ${DockerPWD}"
+          sh "docker push mbhaskar2005/firstdockerrepo:${DOCKER_TAG}"
+        }
       }
     }
   }  
