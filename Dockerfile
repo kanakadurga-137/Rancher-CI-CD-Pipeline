@@ -1,1 +1,2 @@
-FROM jenkins-custom
+FROM ubuntu
+USER root
