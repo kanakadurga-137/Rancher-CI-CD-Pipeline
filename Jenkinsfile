@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build Docker Image'){
       steps{
-        sh "docker build . -t mbhaskar2005/firstdockerrepo:${DOCKER_TAG}
+        sh "docker build . -t mbhaskar2005/firstdockerrepo:${DOCKER_TAG}"
      }
   }
 }
