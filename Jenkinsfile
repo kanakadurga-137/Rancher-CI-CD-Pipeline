@@ -21,8 +21,7 @@ pipeline {
           sh "docker push mbhaskar2005/firstdockerrepo:${DOCKER_TAG}"
         }
       }
-    }
-  }  
+    }  
   stage('Deploy to k8s'){
     steps{
       sh "chmod +x changeTag.sh"
