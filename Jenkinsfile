@@ -24,6 +24,7 @@ pipeline {
     }  
   stage('Deploy to k8s'){
     steps{
+      sh "sudo su"
       sh "chmod +x changeTag.sh"
       sh "./changeTag.sh ${DOCKER_TAG}"
       sh "kubectl apply -f pod.yml"
