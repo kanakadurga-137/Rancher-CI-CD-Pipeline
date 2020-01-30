@@ -45,6 +45,9 @@ mnZPcRgstVlSvn5GIhcYXohGMez3eP3BwN1MxkRL6uH3d41ZB0xFEQo/ij6DMNFm
 Z6I1v+qJos+S5/XLQxJVDAvWDa1GH9GZJtm9mMwrFYJ469IugtRymKwwcUbGeyCt
 PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
 -----END CERTIFICATE-----''', clusterName: '', contextName: '', credentialsId: 'k8s-cred', namespace: 'nsl', serverUrl: 'https://192.168.0.194/k8s/clusters/c-bcpzb') {
+        withCredentials([string(credentialsId: 'dockerPWD', variable: 'DockerPWD')]) {
+          sh "docker login -u mbhaskar2005 -p ${DockerPWD}"
+        }
         sh "./changeTag.sh ${DOCKER_TAG}"
         sh "kubectl apply -f node-app-pod.yml"
         sh "kubectl apply -f services.yml"
