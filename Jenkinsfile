@@ -28,7 +28,7 @@ pipeline {
     steps{
       sh "chmod +x changeTag.sh"
       echo "${Kubernetes server certificate key}"
-      withKubeConfig(caCertificate: '${Kubernetes server certificate key}', credentialsId: 'rancher-cred', namespace: '${Kubernetes Namespace}', serverUrl: '${Kubernetes URL}') {
+      withKubeConfig(caCertificate: '${Kubernetes server certificate key}', credentialsId: 'k8s-cred', namespace: '${Kubernetes Namespace}', serverUrl: '${Kubernetes URL}') {
         sh "./changeTag.sh ${DOCKER_TAG}"
         sh "kubectl apply -f pods.yml"
         sh "kubectl apply -f services.yml"
