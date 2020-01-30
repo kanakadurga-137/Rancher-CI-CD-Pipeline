@@ -9,6 +9,8 @@ pipeline {
     stage('Build Docker Image'){
       steps{
         sh "whoami"
+        sh "sudo su"
+        sh "whoami"
         sh "docker build . -t mbhaskar2005/firstdockerrepo:${DOCKER_TAG}"
         }
      }
@@ -24,7 +26,6 @@ pipeline {
     }  
   stage('Deploy to k8s'){
     steps{
-      sh "sudo su"
       sh "chmod +x changeTag.sh"
       echo "${Kubernetes server certificate key}"
       withKubeConfig(caCertificate: '${Kubernetes server certificate key}', credentialsId: 'rancher-cred', namespace: '${Kubernetes Namespace}', serverUrl: '${Kubernetes URL}') {
