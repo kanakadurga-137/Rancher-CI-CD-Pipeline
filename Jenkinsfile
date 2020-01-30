@@ -28,20 +28,12 @@ pipeline {
       sh "./changeTag.sh ${DOCKER_TAG}"
       sh "kubectl -f pod.yml"
       sh "kubectl -f services.yml"
-      
-          try{
+     
             echo "debug 2"
             sh "kubectl apply -f ."
-            echo "debug 3"
-            }catch(error){
-              echo "debug 4"
-              sh "kubectl create -f ."
-              echo "debug 5"
-            }
-        }
       }
-    
     }
+  }
 }
 
 def getDockerTag(){
