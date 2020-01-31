@@ -1,12 +1,17 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: test
+  name: newpod
 spec:
+  selector:
+    matchLabels:
+      app: newpod
+      version: v1
   imagePullSecrets:
-  - name: docksecr
+  - name: docksec
   containers:
-  - name: test
+  - name: newpod
+    imagePullPolicy: IfNotPresent
     image: mbhaskar2005/firstdockerrepo:tagVersion
     ports:
         - containerPort: 8080
