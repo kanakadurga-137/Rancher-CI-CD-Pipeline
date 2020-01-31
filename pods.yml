@@ -8,5 +8,7 @@ spec:
   containers:
     - name: appnode
       image: mbhaskar2005/firstdockerrepo:tagVersion
+  imagePullSecrets:
+    - name: docker
       ports:
         - containerPort: 8080
