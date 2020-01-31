@@ -4,8 +4,9 @@ metadata:
   name: private-reg
 spec:
   containers:
-    - name: test
-      image: mbhaskar2005/firstdockerrepo:tagVersion
+  - name: test
+    image: mbhaskar2005/firstdockerrepo:tagVersion
+    imagePullPolicy: Never
   imagePullSecrets:
-    - name: docksecr
+  - name: docksecr
       
