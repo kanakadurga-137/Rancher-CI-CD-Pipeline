@@ -8,5 +8,6 @@ spec:
   containers:
   - name: test
     image: mbhaskar2005/firstdockerrepo:tagVersion
-    container: 8080
+    ports:
+        - containerPort: 8080
       
