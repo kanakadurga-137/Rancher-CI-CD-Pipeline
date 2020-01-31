@@ -7,5 +7,5 @@ spec:
   - name: docksecr
   containers:
   - name: test
-    image: DockerHub/mbhaskar2005/firstdockerrepo:tagVersion
+    image: mbhaskar2005/firstdockerrepo:tagVersion
       
