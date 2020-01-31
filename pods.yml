@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: private-reg
+  name: test
 spec:
   imagePullSecrets:
   - name: docksecr
   containers:
   - name: test
-    image: mbhaskar2005/firstdockerrepo:tagVersion
+    image: nexus.nslhub.com/utility-rancher-prod:1
     ports:
         - containerPort: 8080
       
