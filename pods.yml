@@ -11,7 +11,8 @@ spec:
     image: mbhaskar2005/firstdockerrepo:tagVersion
     ports:
         - containerPort: 8080
-selector:
-    matchLabels:
-      app: newpod
-      version: v1
+spec:
+  selector:
+      matchLabels:
+        app: newpod
+        version: v1
