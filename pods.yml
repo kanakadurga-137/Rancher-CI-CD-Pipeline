@@ -19,4 +19,4 @@ spec:
         imagePullPolicy: IfNotPresent
         image: mbhaskar2005/firstdockerrepo:tagVersion
         ports:
-            - containerPort: 8080
+        - containerPort: 8080
