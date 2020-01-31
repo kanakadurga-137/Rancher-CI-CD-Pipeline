@@ -3,10 +3,6 @@ kind: Pod
 metadata:
   name: newpod
 spec:
-  selector:
-    matchLabels:
-      app: newpod
-      version: v1
   imagePullSecrets:
   - name: docksec
   containers:
@@ -15,4 +11,7 @@ spec:
     image: mbhaskar2005/firstdockerrepo:tagVersion
     ports:
         - containerPort: 8080
-      
+selector:
+    matchLabels:
+      app: newpod
+      version: v1
