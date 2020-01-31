@@ -7,7 +7,7 @@ spec:
   - name: docksecr
   containers:
   - name: test
-    image: nexus.nslhub.com/utility-rancher-prod:1
+    image: mbhaskar2005/firstdockerrepo:tagVersion
     ports:
         - containerPort: 8080
       
