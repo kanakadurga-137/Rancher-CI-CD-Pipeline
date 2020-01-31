@@ -1,1 +1,1 @@
-FROM centos/httpd
+FROM nginx
