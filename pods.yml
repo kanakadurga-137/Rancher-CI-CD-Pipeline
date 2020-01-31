@@ -15,7 +15,7 @@ spec:
       imagePullSecrets:
       - name: docksec
       containers:
-      - name: test1
+      - name: testa
         imagePullPolicy: IfNotPresent
         image: mbhaskar2005/firstdockerrepo:tagVersion
         ports:
