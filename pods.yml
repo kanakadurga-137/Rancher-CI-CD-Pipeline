@@ -1,15 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: test
-  labels:
-    app: test
+  name: private-reg
 spec:
   containers:
     - name: test
-      image: mbhaskar2005/firstdockerrepo:tagVersion
-      ports:
-        - containerPort: 8080
+      image: quay.io/mbhaskar2005/firstdockerrepo:tagVersion
   imagePullSecrets:
-    - name: testquay
+    - name: docksecr
       
