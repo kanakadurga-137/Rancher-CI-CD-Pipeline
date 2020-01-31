@@ -11,5 +11,5 @@ spec:
       ports:
         - containerPort: 8080
   imagePullSecrets:
-    - name: docker
+    - name: testquay
       
