@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: appnode
+  name: test
   labels:
-    app: appnode
+    app: test
 spec:
   containers:
-    - name: appnode
+    - name: test
       image: mbhaskar2005/firstdockerrepo:tagVersion
       ports:
         - containerPort: 8080
