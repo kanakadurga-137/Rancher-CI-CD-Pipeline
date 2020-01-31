@@ -3,9 +3,9 @@ kind: Pod
 metadata:
   name: private-reg
 spec:
-  containers:
-  - name: test
-    image: repository/docker/mbhaskar2005/firstdockerrepo:tagVersion
   imagePullSecrets:
   - name: docksecr
+  containers:
+  - name: test
+    image: mbhaskar2005/firstdockerrepo:tagVersion
       
