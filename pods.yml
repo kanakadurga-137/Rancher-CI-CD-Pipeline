@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: test
-      image: https://hub.docker.com/repository/docker/mbhaskar2005/firstdockerrepo:tagVersion
+      image: mbhaskar2005/firstdockerrepo:tagVersion
   imagePullSecrets:
     - name: docksecr
       
