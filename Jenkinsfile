@@ -52,6 +52,7 @@ PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
           sh "kubectl create secret docker-registry docksecr --docker-server='https://index.docker.io/v1/' --docker-username='mbhaskar2005' --docker-password=${DockerPWD}"
         }
         sh "kubectl apply -f node-app-pod.yml"
+        sh "kubectl apply -f services.yml"
 }
       echo "debug 2"
       }
