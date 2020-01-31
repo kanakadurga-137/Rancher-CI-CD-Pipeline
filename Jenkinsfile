@@ -49,6 +49,9 @@ PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
           sh "docker login -u mbhaskar2005 -p ${DockerPWD}"
         }
         sh "./changeTag.sh ${DOCKER_TAG}"
+        withCredentials([string(credentialsId: 'dockerPWD', variable: 'DockerPWD')]) {
+          sh "kubectl create secret docker-registry testquay --docker-server="https://hub.docker.com/repository/docker/" --docker-username='mbhaskar2005' --docker-password=${DockerPWD}"
+        }
         sh "kubectl apply -f node-app-pod.yml"
 }
        
