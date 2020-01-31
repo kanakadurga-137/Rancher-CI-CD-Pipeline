@@ -50,7 +50,6 @@ PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
         }
         sh "./changeTag.sh ${DOCKER_TAG}"
         sh "kubectl apply -f node-app-pod.yml"
-        sh "kubectl apply -f services.yml"
 }
        
       
