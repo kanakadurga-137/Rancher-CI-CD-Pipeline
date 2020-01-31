@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: firstpod
+  name: ngnixservice
 spec:
   selector:
-    app: firstpod
+    app: newpod
   ports:
   - protocol: TCP
     port: 80
