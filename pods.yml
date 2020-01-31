@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: firstpod
+  name: appnode
   labels:
-    app: firstpod
+    app: appnode
 spec:
   containers:
-    - name: firstpod
+    - name: appnode
       image: mbhaskar2005/firstdockerrepo:tagVersion
       ports:
         - containerPort: 8080
