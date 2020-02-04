@@ -46,7 +46,7 @@ metadata:
   name: nginxpage
 spec:
   hosts:
-  - nginxpage
+  - "*"
   gateways:
   - gateway
   http:
