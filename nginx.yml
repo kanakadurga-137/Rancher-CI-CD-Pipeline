@@ -53,9 +53,8 @@ spec:
   - match:
     - uri:
         prefix: /
-  - route:
+    route:
     - destination:
         host: nginxpage
-        subset: v1
         port:
           number: 8080
