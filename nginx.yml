@@ -7,8 +7,9 @@ metadata:
     service: nginxpage
 spec:
   ports:
-  - port: 8080
-    name: http
+  - name: http
+    targetport: 80
+    port: 8080
   selector:
     app: nginxpage
 ---
