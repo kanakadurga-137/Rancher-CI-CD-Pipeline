@@ -29,7 +29,7 @@ pipeline {
         sh "./changeTag.sh ${DOCKER_TAG}"
         withCredentials([string(credentialsId: 'dockerPWD', variable: 'DockerPWD')]) {
           sh "docker login -u mbhaskar2005 -p ${DockerPWD}"
-          sh "kubectl create secret docker-registry docksec --docker-server='https://index.docker.io/v1/' --docker-username='mbhaskar2005' --docker-password=${DockerPWD}"
+          sh "kubectl create secret docker-registry docksecrete --docker-server='https://index.docker.io/v1/' --docker-username='mbhaskar2005' --docker-password=${DockerPWD}"
         }
         sh "kubectl apply -f node-app-pod.yml --validate=false"
         sh "kubectl apply -f services.yml --validate=false"
