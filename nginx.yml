@@ -31,6 +31,8 @@ spec:
         app: nginxpage
         version: v1
     spec:
+      imagePullSecrets:
+      - name: docksecrete
       containers:
       - name: nginxpage
         image: mbhaskar2005/firstdockerrepo:tagVersion
