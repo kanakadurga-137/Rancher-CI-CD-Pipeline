@@ -46,7 +46,15 @@ spec:
   hosts:
   - nginxpage
   http:
+  - match:
+    - uri:
+        exact: /nginx
+  http:
+  -match:
+      ur
   - route:
     - destination:
         host: nginxpage
         subset: v1
+        port:
+          number: 8080
