@@ -45,10 +45,12 @@ metadata:
 spec:
   hosts:
   - nginxpage
+  gateways:
+  - gateway
   http:
   - match:
     - uri:
-        exact: /nginx
+        prefix: /
   http:
   -match:
       ur
