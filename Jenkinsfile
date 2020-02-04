@@ -37,7 +37,7 @@ pipeline {
     }
   }
 }
-
+}
 def getDockerTag(){
     def tag  = sh script: 'git rev-parse --short=5 HEAD', returnStdout: true
     return tag
