@@ -58,3 +58,10 @@ spec:
         host: nginxpage
         port:
           number: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: nginxpage
+spec:
+  host: nginxpage
