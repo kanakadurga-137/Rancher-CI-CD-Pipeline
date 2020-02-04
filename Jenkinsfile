@@ -42,7 +42,7 @@ JXAfrj5ivaaTMkGR9r6OMFcoUa0iPjY7+sWPRckOs36Dr3uouzA3jTndEp4i5XqK
 mnZPcRgstVlSvn5GIhcYXohGMez3eP3BwN1MxkRL6uH3d41ZB0xFEQo/ij6DMNFm
 Z6I1v+qJos+S5/XLQxJVDAvWDa1GH9GZJtm9mMwrFYJ469IugtRymKwwcUbGeyCt
 PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
------END CERTIFICATE-----''', clusterName: '', contextName: '', credentialsId: 'k8s-cred', namespace: 'nsl2', serverUrl: 'https://192.168.0.194/k8s/clusters/c-bcpzb') {
+-----END CERTIFICATE-----''', clusterName: '', contextName: '', credentialsId: 'k8s-cred', namespace: 'nsl', serverUrl: 'https://192.168.0.194/k8s/clusters/c-bcpzb') {
         sh "./changeTag.sh ${DOCKER_TAG}"
         withCredentials([string(credentialsId: 'dockerPWD', variable: 'DockerPWD')]) {
           sh "docker login -u mbhaskar2005 -p ${DockerPWD}"
