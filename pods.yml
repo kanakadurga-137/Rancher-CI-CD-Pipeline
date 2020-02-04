@@ -13,7 +13,7 @@ spec:
         app: testa
     spec:
       imagePullSecrets:
-      - name: docksec
+      - name: docksecrete
       containers:
       - name: testa
         imagePullPolicy: IfNotPresent
