@@ -46,7 +46,7 @@ PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
 -----END CERTIFICATE-----''', credentialsId: 'k8s-cred', namespace: 'nsl', serverUrl: 'https://192.168.0.194/k8s/clusters/c-bcpzb') {
             sh "./changeTag.sh ${DOCKER_TAG}"
             sh "docker login -u mbhaskar2005 -p ${DockerPWD}"
-            sh "kubectl create secret docker-registry docksecrete --docker-server='https://index.docker.io/v1/' --docker-username='mbhaskar2005' --docker-password=${DockerPWD}"
+        
             sh "kubectl apply -f node-app-pod.yml"
         }
         echo "debug 2"
