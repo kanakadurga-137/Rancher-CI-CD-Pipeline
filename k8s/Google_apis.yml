@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: googleapis
+  labels:
+    app: googleapis
+    service: googleapis
+spec:
+  ports:
+  - port: 7004
+    name: http
+  selector:
+    app: googleapis
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vcs-googleapis
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: googleapis-v1
+  labels:
+    app: googleapis
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: googleapis
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: googleapis
+        version: v1
+      annotations:
+        traffic.sidecar.istio.io/excludeOutboundIPRanges: 172.31.10.24/32
+    spec:
+      serviceAccountName: vcs-googleapis
+      imagePullSecrets:
+      - name: nexus
+      containers:
+      - env:
+        - name: NSL_VCS_HOST
+          value: 172.31.10.24
+        name: googleapis
+        image: nexus.nslhub.com/google-rancher-prod:1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7004
+        resources: {}
+        securityContext:
+          capabilities: {}
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: googleapis
+spec:
+  gateways:
+  - gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /google_apis
+    route:
+    - destination:
+        host: googleapis
+        port:
+          number: 7004
+      weight: 100
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: googleapis
+spec:
+  host: googleapis
+  subsets:
+  - labels:
+      version: v1
+    name: v1

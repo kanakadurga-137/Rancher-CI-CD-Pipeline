@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: conferncing
+  labels:
+    app: conferncing
+    service: conferncing
+spec:
+  ports:
+  - port: 7002
+    name: http
+  selector:
+    app: conferncing
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: external-conf
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conferncing-v1
+  labels:
+    app: conferncing
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conferncing
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: conferncing
+        version: v1
+    spec:
+      serviceAccountName: external-conf
+      imagePullSecrets:
+      - name: nexus
+      containers:
+      - env:
+        - name: NSL_VCS_HOST
+          value: 18.191.115.25
+        name: conferncing
+        image: nexus.nslhub.com/conferencing-rancher-prod:1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7002
+        resources: {}
+        securityContext:
+          capabilities: {}
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: conferncing
+spec:
+  gateways:
+  - gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /conferencing
+    route:
+    - destination:
+        host: conferncing
+        port:
+          number: 7002
+      weight: 100
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: conferncing
+spec:
+  host: conferncing
+  subsets:
+  - labels:
+      version: v1
+    name: v1
