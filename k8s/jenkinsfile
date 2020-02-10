@@ -34,9 +34,7 @@ PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
             sh "kubectl apply -f Google_apis.yml"
         }
      }
-    }
   }
-}
 }
 def getDockerTag(){
     def tag  = sh script: 'git rev-parse --short=5 HEAD', returnStdout: true
