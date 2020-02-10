@@ -4,7 +4,7 @@ pipeline {
   environment {
     DOCKER_TAG = getDockerTag()
   }
-
+stages{
   stage('Deploy to k8s'){
     steps{
       sh "chmod +x changeTag.sh"
@@ -32,10 +32,11 @@ PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
             sh "kubectl apply -f communications.yml"
             sh "kubectl apply -f conferncing.yml"
             sh "kubectl apply -f Google_apis.yml"
+          }
         }
-     }
+      }
+    }
   }
-}
 }
 def getDockerTag(){
     def tag  = sh script: 'git rev-parse --short=5 HEAD', returnStdout: true
