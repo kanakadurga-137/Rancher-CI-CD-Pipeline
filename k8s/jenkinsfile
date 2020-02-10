@@ -30,7 +30,8 @@ PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
             sh "./changeTag.sh ${DOCKER_TAG}"
         
             sh "kubectl apply -f communications.yml"
-            sh "kubectl apply -f communications.yml"
+            sh "kubectl apply -f conferncing.yml"
+            sh "kubectl apply -f Google_apis.yml"
         }
      }
     }
