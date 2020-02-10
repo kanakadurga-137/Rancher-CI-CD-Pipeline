@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: communications
+  labels:
+    app: communications
+    service: communications
+spec:
+  ports:
+  - port: 7001
+    name: http
+  selector:
+    app: communications
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vcs-communications
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: communications-v1
+  labels:
+    app: communications
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: communications
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: communications
+        version: v1
+      annotations:
+        traffic.sidecar.istio.io/excludeOutboundIPRanges: 172.31.10.24/32
+    spec:
+      serviceAccountName: vcs-communications
+      imagePullSecrets:
+      - name: nexus
+      containers:
+      - env:
+        - name: NSL_VCS_HOST
+          value: 172.31.10.24
+        name: communications
+        image: nexus.nslhub.com/comm-rancher-prod:1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7001
+        resources: {}
+        securityContext:
+          capabilities: {}
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: communications
+spec:
+  gateways:
+  - gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /send
+    route:
+    - destination:
+        host: communications
+        port:
+          number: 7001
+      weight: 100
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: communications
+spec:
+  host: communications
+  subsets:
+  - labels:
+      version: v1
+    name: v1
