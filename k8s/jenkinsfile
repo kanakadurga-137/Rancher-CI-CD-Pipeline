@@ -36,6 +36,7 @@ PdtrDFXEJY3vkDcg721//o/6Avu0BmHIg/VVggfousRHsg==
      }
   }
 }
+}
 def getDockerTag(){
     def tag  = sh script: 'git rev-parse --short=5 HEAD', returnStdout: true
     return tag
